@@ -5,14 +5,25 @@ var browserSync = require('browser-sync').create();
 var config = {
 	'src': './',
 	'dest': 'dist/',
+	'icons': 'img/icons/',
 	'proxy': false,
 	'sourcemaps': false,
-	'browsers': ['Android 2.3', 'Android >= 4', 'last 4 Chrome versions', 'Firefox ESR', 'IE >= 8', 'iOS >= 8', 'Safari >= 8', 'Opera >= 15']
+	'browsers': [
+		'Android 2.3',
+		'Android >= 4',
+		'last 4 Chrome versions',
+		'Firefox ESR',
+		'Edge >= 12',
+		'IE >= 8',
+		'iOS >= 8',
+		'Safari >= 8',
+		'Opera >= 15'
+	]
 };
 
 
 // Default task: Build production files
-gulp.task('default', ['html', 'styles', 'script', 'images']);
+gulp.task('default', ['html', 'styles', 'scripts', 'images']);
 
 // HTML
 gulp.task('html', function() {
@@ -46,20 +57,18 @@ gulp.task('styles', function() {
 });
 
 // Compile javascript
-gulp.task('script', function() {
+gulp.task('scripts', function() {
 	return gulp.src(config.src + 'js/*.js')
 		.pipe($.if(config.sourcemaps, $.sourcemaps.init()))
-		.pipe($.include().on('error', function (error) {
+		.pipe($.include().on('error', function(error) {
+			$.util.log($.util.colors.red(error.message));
+			this.emit('end');
+		}))
+		.pipe($.uglify().on('error', function(error) {
 			$.util.log($.util.colors.red(error.message));
 			this.emit('end');
 		}))
 		.pipe($.if(config.sourcemaps, $.sourcemaps.write()))
-		.pipe(gulp.dest(config.dest + 'js'))
-		.pipe(browserSync.stream())
-		.pipe($.uglify().on('error', function (error) {
-			$.util.log($.util.colors.red(error.message));
-			this.emit('end');
-		}))
 		.pipe($.rename({suffix: '.min'}))
 		.pipe(gulp.dest(config.dest + 'js'))
 		.pipe(browserSync.stream());
@@ -71,6 +80,16 @@ gulp.task('images', function() {
 		.pipe($.cache($.imagemin()))
 		.pipe(gulp.dest(config.dest + 'img'))
 		.pipe(browserSync.stream());
+});
+
+// Icons
+gulp.task('icons', function() {
+	$.iconify({
+		src: config.src + config.icons + '**/*.svg',
+		pngOutput: config.dest + config.icons,
+		scssOutput: config.src + 'scss',
+		cssOutput: false
+	});
 });
 
 // Watch files for changes and reload
@@ -94,6 +113,6 @@ gulp.task('serve', ['default'], function() {
 
 	gulp.watch([config.src + '*.html'], ['html']);
 	gulp.watch([config.src + 'scss/**/*.scss'], ['styles']);
-	gulp.watch([config.src + 'js/*.js'], ['script']);
+	gulp.watch([config.src + 'js/*.js'], ['scripts']);
 	gulp.watch([config.src + 'img/**/*'], ['images']);
 });
