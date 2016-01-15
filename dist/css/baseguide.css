@@ -1207,15 +1207,8 @@ th {
   a:visited {
     text-decoration: underline;
   }
-  a[href]:after {
-    content: " (" attr(href) ")";
-  }
   abbr[title]:after {
     content: " (" attr(title) ")";
-  }
-  a[href^="#"]:after,
-  a[href^="javascript:"]:after {
-    content: "";
   }
   pre,
   blockquote {
@@ -1634,8 +1627,8 @@ input[type="email"], input[type="number"], input[type="password"], input[type="s
   -webkit-transition: border-color 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out;
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 input[type="email"][disabled], input[type="number"][disabled], input[type="password"][disabled], input[type="search"][disabled], input[type="tel"][disabled], input[type="text"][disabled], input[type="url"][disabled], textarea[disabled], select[disabled] {
@@ -1652,8 +1645,8 @@ input[type="email"]:focus, input[type="number"]:focus, input[type="password"]:fo
 
 select {
   -webkit-appearance: menulist;
-  -moz-appearance: menulist;
-  appearance: menulist;
+     -moz-appearance: menulist;
+          appearance: menulist;
 }
 
 select[multiple], select[size] {
@@ -1823,8 +1816,8 @@ input[type="checkbox"]:checked + label:after {
   padding-right: 2em;
   padding-right: 0.75em \9;
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 .select select::-ms-expand {
@@ -1850,7 +1843,6 @@ input[type="checkbox"]:checked + label:after {
   background-position: center center;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAGCAYAAAD37n+BAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABlSURBVChTYzQyMqpnZGRsYCAC/P//v4H5+fPnByUlJRmAmhyg4lgBSPG5c+camUEcQppgikFssAYQwKUJWTEIwDWAAEiTlJSUAJBpAeIDFRcCFXeC2HiBsbFxPzAwCqBcJMDAAAD1cjECKulnugAAAABJRU5ErkJggg==");
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' viewBox='0 0 12 6'%3E%3Cpath fill='%23333' d='M0 0l6 6 6-6h-12z'/%3E%3C/svg%3E"), linear-gradient(transparent, transparent);
-  background-image: none \9;
   display: none \9;
 }
 
@@ -1865,18 +1857,12 @@ input[type="checkbox"]:checked + label:after {
 
 @-moz-document url-prefix() {
   /* autoprefixer: off */
-  .select:after {
-    display: none;
-  }
-  .select select {
-    padding-right: 0.75em;
-  }
-  @supports (filter: opacity(1)) {
+  @supports not (filter: opacity(1)) {
     .select:after {
-      display: block;
+      display: none;
     }
     .select select {
-      padding-right: 2em;
+      padding-right: 0.75em;
     }
   }
 }

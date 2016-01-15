@@ -64,8 +64,6 @@ label {
 	background-color: $input-bg;
 	color: $input-color;
 	transition: border-color 0.15s ease-in-out;
-	-webkit-appearance: none;
-	-moz-appearance: none;
 	appearance: none;
 
 	&[disabled] {
@@ -82,8 +80,6 @@ label {
 }
 
 select {
-	-webkit-appearance: menulist;
-	-moz-appearance: menulist;
 	appearance: menulist;
 
 	&[multiple],
@@ -227,8 +223,6 @@ input[type="search"] {
 		select {
 			padding-right: 2em;
 			padding-right: $input-padding-horizontal \9;
-			-webkit-appearance: none;
-			-moz-appearance: none;
 			appearance: none;
 		}
 
@@ -255,7 +249,6 @@ input[type="search"] {
 			background-position: center center;
 			background-image: url($icon-select-fallback);
 			background-image: url($icon-select), linear-gradient(transparent, transparent);
-			background-image: none \9;
 			display: none \9;
 		}
 	}
@@ -271,24 +264,16 @@ input[type="search"] {
 		}
 	}
 
-	// show custom arrow in Firefox 35+
+	// hide custom arrow in Firefox < 35
 	@-moz-document url-prefix() {
 		/* autoprefixer: off */
-		.select:after {
-			display: none;
-		}
-
-		.select select {
-			padding-right: $input-padding-horizontal;
-		}
-
-		@supports (filter: opacity(1)) {
+		@supports not(filter: opacity(1)) {
 			.select:after {
-				display: block;
+				display: none;
 			}
 
 			.select select {
-				padding-right: 2em;
+				padding-right: $input-padding-horizontal;
 			}
 		}
 	}
