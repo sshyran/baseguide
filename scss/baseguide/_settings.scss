@@ -12,6 +12,7 @@ $headings: (
 	'h4, .h4', 'h5, .h5', 'h6, .h6'
 ) !default;
 
+$headings-spacing: 0.4em !default;
 $headings-font-family: inherit !default;
 $headings-font-weight: 700 !default;
 $headings-line-height: 1.2 !default;
@@ -84,8 +85,8 @@ $icon-select-fallback: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAGCA
 
 
 // Tables
-$table-padding-vertical: 0.6em !default;
-$table-padding-horizontal: 0.4em !default;
+$table-padding-vertical: 0.4em !default;
+$table-padding-horizontal: 0.6em !default;
 $table-border-color: #b6b6b6 !default;
 
 

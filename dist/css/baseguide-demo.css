@@ -1,4 +1,4 @@
-/*! Baseguide v1.3.5 | MIT License | http://basegui.de */
+/*! Baseguide v1.4.0 | MIT License | http://basegui.de */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
@@ -1178,8 +1178,8 @@ th {
   *,
   *:before,
   *:after,
-  *:first-letter,
-  *:first-line {
+  p:first-letter,
+  p:first-line {
     background: transparent !important;
     color: #000 !important;
     -webkit-box-shadow: none !important;
@@ -1447,11 +1447,11 @@ textarea {
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  margin-top: 0.8em;
+  margin-bottom: 0.4em;
   font-family: inherit;
   font-weight: 700;
   line-height: 1.2;
-  margin-top: 0.8em;
-  margin-bottom: 0.4em;
   color: inherit;
 }
 
@@ -1525,7 +1525,6 @@ input {
   border: 1px solid transparent;
   border-radius: 0;
   border-color: transparent;
-  background-image: none;
   background-color: #448aff;
   color: #fff;
   text-align: center;
@@ -1633,6 +1632,7 @@ input[type="email"]:focus, input[type="number"]:focus, input[type="password"]:fo
 }
 
 select {
+  overflow-x: hidden;
   -webkit-appearance: menulist;
      -moz-appearance: menulist;
           appearance: menulist;
@@ -1834,7 +1834,7 @@ input[type="checkbox"]:checked + label:before {
 }
 
 .table th, .table td {
-  padding: 0.6em 0.4em;
+  padding: 0.4em 0.6em;
   border-bottom: 1px solid #b6b6b6;
   vertical-align: top;
 }
